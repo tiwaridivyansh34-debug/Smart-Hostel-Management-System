@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Hostel Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="login-page">
+
+        <div class="login-box">
+
+            <h1>🏠 Smart Hostel</h1>
+
+            <p>Hostel Management System</p>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter your name"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+            >
+
+            <button onclick="login()">Login</button>
+
+            <p id="loginMessage"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <h2>🏠 Smart Hostel</h2>
+
+            <button onclick="showSection('home')">
+                🏠 Dashboard
+            </button>
+
+            <button onclick="showSection('room')">
+                🛏️ My Room
+            </button>
+
+            <button onclick="showSection('complaint')">
+                🔧 Complaints
+            </button>
+
+            <button onclick="showSection('mess')">
+                🍽️ Mess
+            </button>
+
+            <button onclick="showSection('notice')">
+                📢 Notices
+            </button>
+<button onclick="showSection('rules')">
+    📜 Rules
+</button>
+
+            <button onclick="showSection('fees')">
+                💳 Fees
+            </button>
+
+            <button onclick="logout()">
+                🚪 Logout
+            </button>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+
+            <!-- Dashboard Section -->
+            <section id="home" class="section">
+
+                <h1>Welcome to Smart Hostel 👋</h1>
+
+                <p>
+                    Manage your hostel information from one place.
+                </p>
+
+
+                <div class="cards">
+
+                    <div class="card">
+                        <h3>🛏️ My Room</h3>
+                        <p>Room B-204</p>
+                    </div>
+
+
+                    <div class="card">
+                        <h3>🔧 Complaints</h3>
+                        <p id="complaintCount">0 Active</p>
+                    </div>
+
+
+                    <div class="card">
+                        <h3>💳 Fees</h3>
+                        <p>₹15,000 Pending</p>
+                    </div>
+
+
+                    <div class="card">
+                        <h3>📢 Notices</h3>
+                        <p>3 New Notices</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Room Section -->
+            <section id="room" class="section hidden">
+
+                <h1>🛏️ My Room</h1>
+
+                <div class="info-box">
+
+                    <p>
+                        <strong>Room Number:</strong>
+                        B-204
+                    </p>
+
+                    <p>
+                        <strong>Floor:</strong>
+                        2nd Floor
+                    </p>
+
+                    <p>
+                        <strong>Bed:</strong>
+                        B
+                    </p>
+
+                    <p>
+                        <strong>Roommate:</strong>
+                        Divyansh Tiwari
+                    </p>
+
+                    <p>
+                        <strong>Room Type:</strong>
+                        Double Sharing
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Complaint Section -->
+            <section id="complaint" class="section hidden">
+
+                <h1>🔧 Complaint Management</h1>
+
+                <div class="complaint-form">
+
+                    <input
+                        type="text"
+                        id="complaintInput"
+                        placeholder="Enter your complaint"
+                    >
+
+                    <button onclick="submitComplaint()">
+                        Submit Complaint
+                    </button>
+
+                </div>
+
+                <div id="complaintList"></div>
+
+            </section>
+
+
+            <!-- Mess Section -->
+            <section id="mess" class="section hidden">
+
+                <h1>🍽️ Mess Menu</h1>
+
+                <table>
+
+                    <tr>
+                        <th>Day</th>
+                        <th>Breakfast</th>
+                        <th>Lunch</th>
+                        <th>Dinner</th>
+                    </tr>
+
+                    <tr>
+                        <td>Monday</td>
+                        <td>Poha</td>
+                        <td>Dal Rice</td>
+                        <td>Paneer Roti</td>
+                    </tr>
+
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>Paratha</td>
+                        <td>Rajma Rice</td>
+                        <td>Dal Roti</td>
+                    </tr>
+
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>Idli</td>
+                        <td>Chole Rice</td>
+                        <td>Mix Veg</td>
+                    </tr>
+
+                    <tr>
+                        <td>Thursday</td>
+                        <td>Poha</td>
+                        <td>Dal Rice</td>
+                        <td>Paneer</td>
+                    </tr>
+
+                </table>
+
+            </section>
+
+
+            <!-- Notice Section -->
+           <section id="notice" class="section hidden">
+
+    <h1>📢 Hostel Notices</h1>
+
+    <div id="studentNotices">
+        <p>Loading notices...</p>
+    </div>
+
+</section>
+<section id="rules" class="section hidden">
+
+    <h1>📜 Hostel Rules</h1>
+
+    <div id="studentRules">
+        <p>Loading rules...</p>
+    </div>
+
+</section>
+
+            <!-- Fees Section -->
+            <section id="fees" class="section hidden">
+
+                <h1>💳 Hostel Fees</h1>
+
+                <div class="fee-box">
+
+                    <p>
+                        <strong>Total Fee:</strong>
+                        ₹45,000
+                    </p>
+
+                    <p>
+                        <strong>Paid:</strong>
+                        ₹30,000
+                    </p>
+
+                    <p>
+                        <strong>Pending:</strong>
+                        ₹15,000
+                    </p>
+
+                    <button onclick="payFee()">
+                        Pay Pending Fee
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+<!-- ========================= -->
+<!-- ADMIN PANEL -->
+<!-- ========================= -->
+
+<div id="adminDashboard" class="dashboard">
+
+    <!-- Admin Sidebar -->
+    <aside class="sidebar">
+
+        <h2>🏠 Smart Hostel</h2>
+
+        <p style="padding: 10px; font-weight: bold;">
+            👨‍💼 Admin Panel
+        </p>
+
+        <button onclick="showAdminSection('adminHome')">
+            📊 Dashboard
+        </button>
+
+        <button onclick="showAdminSection('adminComplaints')">
+            🔧 Complaints
+        </button>
+
+        <button onclick="showAdminSection('adminStudents')">
+            👨‍🎓 Students
+        </button>
+
+        <button onclick="showAdminSection('adminRooms')">
+            🛏️ Rooms
+        </button>
+
+        <button onclick="showAdminSection('adminNotices')">
+            📢 Notices
+        </button>
+<button onclick="showAdminSection('adminRules')">
+    📜 Rules
+</button>
+        <button onclick="adminLogout()">
+            🚪 Logout
+        </button>
+
+    </aside>
+
+
+    <!-- Admin Main Content -->
+    <main class="main-content">
+<section id="rules" class="section hidden">
+
+    <h1>📜 Hostel Rules</h1>
+
+    <div id="studentRules">
+        <p>Loading rules...</p>
+    </div>
+
+</section>
+
+        <!-- Admin Dashboard -->
+        <section id="adminHome" class="admin-section">
+
+            <h1>📊 Admin Dashboard</h1>
+
+            <p>
+                Welcome to Smart Hostel Administration Panel.
+            </p>
+
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>👨‍🎓 Students</h3>
+                    <p>120 Registered</p>
+                </div>
+
+
+                <div class="card">
+                    <h3>🔧 Complaints</h3>
+
+                    <p id="adminComplaintCount">
+                        0 Complaints
+                    </p>
+                </div>
+
+
+                <div class="card">
+                    <h3>🛏️ Rooms</h3>
+                    <p>60 Rooms</p>
+                </div>
+
+
+                <div class="card">
+                    <h3>💳 Fees</h3>
+                    <p>₹4,50,000 Collected</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Admin Complaints -->
+        <section id="adminComplaints"
+                 class="admin-section hidden">
+
+            <h1>🔧 Complaint Management</h1>
+
+            <p>
+                View and manage complaints submitted by students.
+            </p>
+
+            <div id="adminComplaintList"></div>
+
+        </section>
+
+
+        <!-- Student Management -->
+        <section id="adminStudents"
+                 class="admin-section hidden">
+
+            <h1>👨‍🎓 Student Management</h1>
+
+            <div class="info-box">
+
+                <p>
+                    <strong>Total Students:</strong>
+                    120
+                </p>
+
+                <p>
+                    <strong>Present in Hostel:</strong>
+                    108
+                </p>
+
+                <p>
+                    <strong>On Leave:</strong>
+                    12
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Room Management -->
+        <section id="adminRooms"
+                 class="admin-section hidden">
+
+            <h1>🛏️ Room Management</h1>
+
+            <div class="info-box">
+
+                <p>
+                    <strong>Total Rooms:</strong>
+                    60
+                </p>
+
+                <p>
+                    <strong>Occupied Rooms:</strong>
+                    54
+                </p>
+
+                <p>
+                    <strong>Available Rooms:</strong>
+                    6
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Notice Management -->
+        <section id="adminNotices"
+                 class="admin-section hidden">
+
+            <h1>📢 Notice Management</h1>
+<div class="admin-notice-form">
+
+    <input
+        type="text"
+        id="noticeTitle"
+        placeholder="Notice title"
+    >
+
+    <textarea
+        id="noticeMessage"
+        placeholder="Enter notice message"
+    ></textarea>
+
+    <button onclick="addNotice()">
+        ➕ Add Notice
+    </button>
+
+</div>
+
+<div id="adminNoticeList">
+    <p>Loading notices...</p>
+</div>
+
+            <div class="notice">
+
+                <h3>Hostel Maintenance</h3>
+
+                <p>
+                    Maintenance will be conducted on Sunday.
+                </p>
+
+            </div>
+
+
+            <div class="notice">
+
+                <h3>Mess Timing</h3>
+
+                <p>
+                    Dinner will be served from
+                    7:30 PM to 9:30 PM.
+                </p>
+
+            </div>
+
+        </section>
+</section>
+<!-- Line 492 -->
+
+<!-- YAHAN SE RULES CODE PASTE KARO — Line 493 -->
+
+<!-- Rules Management -->
+<section id="adminRules" class="admin-section hidden">
+
+    <h1>📜 Rules Management</h1>
+
+    <div class="admin-notice-form">
+
+        <input
+            type="text"
+            id="ruleTitle"
+            placeholder="Rule title"
+        >
+
+        <textarea
+            id="ruleDescription"
+            placeholder="Enter rule description"
+        ></textarea>
+
+        <button onclick="addRule()">
+            ➕ Add Rule
+        </button>
+
+    </div>
+
+    <div id="adminRuleList">
+        <p>Loading rules...</p>
+    </div>
+
+</section>
+
+<!-- Iske baad tumhara existing -->
+</main>
+
+    </main>
+
+</div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+{
+  "students": [],
+  "complaints": [],
+  "notices": [],
+  "rooms": [],
+  "rules": [
+    {
+      "id": 1793554139676,
+      "title": "Hostel descipline.",
+      "description": "Students must maintain cleanliness and follow hostel timings.",
+      "date": "1/11/2026"
+    }
+  ],
+  "fees": [],
+  "feedback": []
+}
