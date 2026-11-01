@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const DB_FILE = path.join(__dirname, "db.json");
 
@@ -218,7 +218,7 @@ app.delete("/api/rules/:id", (req, res) => {
     });
 });
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log("--------------------------------");
     console.log("Smart Hostel Server Started");
     console.log(`http://localhost:${PORT}`);
